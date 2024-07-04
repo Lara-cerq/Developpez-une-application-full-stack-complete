@@ -9,8 +9,13 @@
 }
 
 .logo {
-  height: 40%;
-  width: 10%;
+  // height: 40%;
+  // width: 10%;
+  // position: absolute;
+width: 140px;
+height: 81px;
+left: 221px;
+top: 2270px;
 }
 
 div{
@@ -31,15 +36,20 @@ div{
 }
 
 .image {
-  // display: flex;
-  // justify-content: left;
-  margin-bottom: 5px;
 
-  /* Ellipse 9 */
+  margin-bottom: 25px;
 
-  width: 48px;
-  height: 48px;
-  // left: 950px;
+width: 30px;
+height: 35px;
+left: 986.95px;
+top: 2297px;
+
+
+  // /* Ellipse 9 */
+
+  // width: 48px;
+  // height: 48px;
+  // // left: 950px;
 
   background: #D9D9D9;
 }

@@ -9,14 +9,13 @@
       <mat-card-content>
         <p>
           {{ theme.description }}
-          {{theme.follow}}
         </p>
         <div class="button">
-          <button *ngIf="!theme?.follow" mat-raised-button color="primary" (click)="follow(theme.themeId)">
-            <span class="ml1">S'abonner</span>
+          <button *ngIf="!theme?.follow" mat-raised-button class="ml1" (click)="follow(theme.themeId)">
+            <span>S'abonner</span>
           </button>
           <button *ngIf="theme?.follow" mat-raised-button color="warn" (click)="unFollow(theme.themeId)">
-            <span class="ml1">Se desabonner</span>
+            <span>Se desabonner</span>
           </button>
         </div>
       </mat-card-content>

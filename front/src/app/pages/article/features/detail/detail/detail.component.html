@@ -1,7 +1,7 @@
 <div class="m3">
     <mat-card>
         <mat-card-title fxLayout="column" style="padding-left: 50px">
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayoutAlign="start start">
                 <div class="button">
                     <button mat-icon-button (click)="back()">
                         <mat-icon>arrow_back</mat-icon>
@@ -32,11 +32,9 @@
     </mat-card>
     <div style="padding-left: 50px">
         <h4> Commentaires </h4>
+        <h1></h1>
     </div>
     <mat-card class="commentMat" fxLayout="column">
-        <!-- <mat-card-title style="padding-left: 50px">
-            <h4> Commentaires </h4>
-        </mat-card-title> -->
         <mat-card-content *ngFor="let comment of comments">
             <div fxLayout="row" style="padding-left: 70px">
                 <h5>

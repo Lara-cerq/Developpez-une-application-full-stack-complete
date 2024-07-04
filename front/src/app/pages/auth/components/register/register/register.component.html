@@ -29,7 +29,7 @@
                         <input matInput formControlName="password">
                     </mat-form-field>
                 </mat-card-content>
-                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">S'inscrire</button>
+                <button class="ml1" mat-raised-button type="submit" [disabled]="form.invalid">S'inscrire</button>
                 <span *ngIf="onError" class="error ml2">An error occurred</span>
             </form>
         </mat-card>

@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Theme } from '../../interface/theme';
-import { Observable, mergeMap, of, take } from 'rxjs';
 import { ThemeService } from '../../service/theme.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/pages/user/service/user.service';
-import { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';
 import { SessionService } from 'src/app/services/session.service';
-import { User } from 'src/app/pages/user/interface/user.interface';
-
 @Component({
   selector: 'app-theme',
   templateUrl: './theme.component.html',
@@ -21,7 +15,6 @@ export class ThemeComponent implements OnInit {
 
   constructor(
     private themeService : ThemeService,
-    private route: ActivatedRoute, 
     private userService : UserService,
     private sessionService : SessionService
     ) { 

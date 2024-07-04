@@ -1,8 +1,21 @@
-span {
+.link {
     color: red;
 }
 
 h1 {
     text-align: center;
     font-weight: bold ;
+}
+
+.item {
+    background-color: rgb(243, 243, 243);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 50px
+}
+
+.affiche {
+    padding-left: 50px;
+    padding-right: 50px
 }

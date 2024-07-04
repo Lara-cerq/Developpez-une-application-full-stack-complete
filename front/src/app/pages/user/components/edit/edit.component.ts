@@ -6,6 +6,7 @@ import { SessionService } from 'src/app/services/session.service';
 import { UserService } from '../../service/user.service';
 import { User } from '../../interface/user.interface';
 import { Theme } from 'src/app/pages/theme/interface/theme';
+import { ThemeService } from 'src/app/pages/theme/service/theme.service';
 
 @Component({
   selector: 'app-edit',
@@ -22,14 +23,19 @@ export class EditComponent implements OnInit {
 
   public themes$: Theme[] | undefined;
 
+  private userId: string;
+
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     private userService: UserService,
     private sessionService : SessionService,
+    private themeService : ThemeService,
     private router: Router
-  ) { }
+  ) { 
+    this.userId = this.sessionService.sessionInformation!.id.toString();
+  }
 
   ngOnInit(): void {
 
@@ -44,6 +50,9 @@ export class EditComponent implements OnInit {
         this.user = user, 
         this.themes$ =  this.user?.themes
       });
+  }
+  public unFollow(themeId : any): void {
+    this.userService.unFollow(themeId, this.userId).subscribe(_ => this.themes$ = this.user?.themes);
   }
 
   public back(): void {

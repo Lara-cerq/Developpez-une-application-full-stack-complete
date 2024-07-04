@@ -67,7 +67,7 @@ export class ArticleComponent implements OnInit {
     const article = this.articleForm?.value as Article;
       this.articleService
         .create(article)
-        .subscribe((article: Article) => this.exitPage('Session created !'));
+        .subscribe((article: Article) => this.exitPage('Article crée !'));
   }
 
   private exitPage(message: string): void {
