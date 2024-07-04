@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.dto.UserDto;
 import com.openclassrooms.mddapi.dto.UserUpdateDto;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +17,15 @@ import java.util.ArrayList;
 @RequestMapping("/api/user")
 public class UserController {
 
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
     private UserService userService;
 
-    public UserController(PasswordEncoder passwordEncoder, UserService userService) {
-        this.passwordEncoder = passwordEncoder;
-        this.userService = userService;
-    }
-
+    /*
+    requette permettant d'envoyer au front l'utilisateur correspondant à l'id
+    */
     @GetMapping("/{user_id}")
     public ResponseEntity<?> findById(@PathVariable("user_id") String id) {
         try {
@@ -44,6 +45,9 @@ public class UserController {
         }
     }
 
+    /*
+    requette permettant d'actualiser les données de l'utilisateur envoyés par le front
+    */
     @PutMapping("{id}")
     public ResponseEntity<?> update(@PathVariable("id") String id, @Valid @RequestBody UserUpdateDto userUpdateDto) {
 
@@ -67,6 +71,9 @@ public class UserController {
         }
     }
 
+    /*
+    requette permettant de s'abonner à un thème
+    */
     @PostMapping("{themeId}/follow/{userId}")
     public ResponseEntity<?> follow(@PathVariable("themeId") String themeId, @PathVariable("userId") String userId) {
         try {
@@ -78,6 +85,9 @@ public class UserController {
         }
     }
 
+    /*
+    requette permettant de se désabonner à un thème
+    */
     @DeleteMapping("{themeId}/follow/{userId}")
     public ResponseEntity<?> unFollow(@PathVariable("themeId") String themeId, @PathVariable("userId") String userId) {
         try {

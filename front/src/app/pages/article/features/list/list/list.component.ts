@@ -28,10 +28,12 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // redirection du boutton permettant de créer nouvel article
   create() {
     this.router.navigateByUrl('article/create');
   }
 
+  // pour button de 'trier par'
   onDownClick() {
     this.ascending=true;
   }

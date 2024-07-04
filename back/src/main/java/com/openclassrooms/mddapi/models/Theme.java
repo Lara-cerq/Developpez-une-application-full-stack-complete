@@ -31,11 +31,4 @@ public class Theme {
 
     private Boolean follow;
 
-
-//    @OneToMany(mappedBy = "theme")
-//    private List<Article> articles;
-
-//    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "themes")
-//    private List<User> users;
-
 }

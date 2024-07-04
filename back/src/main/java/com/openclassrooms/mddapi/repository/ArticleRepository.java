@@ -9,7 +9,13 @@ import java.util.List;
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
+    /*
+    récupére de la DB les articles par ordre décroissante de création
+     */
     List<Article> findByOrderByCreatedAtDesc();
 
+    /*
+    récupére de la DB les articles par ordre décroissante de création
+    */
     List<Article> findByOrderByCreatedAtAsc();
 }

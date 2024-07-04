@@ -1,57 +1,54 @@
-<div class="m3" fxLayout="column" fxLayoutAlign="center center">
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="affiche">
-      <mat-cardheader fxLayout="column" fxLayoutAlign="center center">
-        <mat-card-title>
-          <h1>Profil Utilisateur</h1>
-        </mat-card-title>
-      </mat-cardheader>
-      <mat-card-content class="user" *ngIf="editUserForm" fxLayout="column" fxLayoutAlign="center center">
-        <form class="mt2" fxLayout="column" [formGroup]="editUserForm" (ngSubmit)="submit()">
-          <mat-form-field appearance="outline" fxFlex>
-            <input matInput formControlName="firstName">
-          </mat-form-field>
-          <mat-form-field appearance="outline" fxFlex>
-            <input matInput formControlName="email">
-          </mat-form-field>
-          <mat-form-field appearance="outline" fxFlex>
-            <input matInput formControlName="password" placeholder="Mot de passe">
-          </mat-form-field>
-          <div fxLayout="row" fxLayoutAlign="center center">
-            <div>
-              <button class="ml1" mat-raised-button type="submit" [disabled]="editUserForm.invalid">
-                Sauvegarder
-              </button>
+<div class="">
+    <h1>Profil Utilisateur</h1>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div>
+      <mat-card>
+        <mat-card-content class="user" *ngIf="editUserForm" fxLayout="column" fxLayoutAlign="center center">
+          <form class="mt2" fxLayout="column" [formGroup]="editUserForm" (ngSubmit)="submit()">
+            <mat-form-field appearance="outline" fxFlex>
+              <input matInput formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+              <input matInput formControlName="email">
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+              <input matInput formControlName="password" placeholder="Mot de passe">
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <div>
+                <button mat-raised-button type="submit" [disabled]="editUserForm.invalid">
+                  Sauvegarder
+                </button>
+              </div>
+              <div>
+                <span routerLink="logout()" class="link" (click)="logout()">Se deconnecter</span>
+              </div>
             </div>
-            <div>
-              <span routerLink="logout()" color="warn" class="link" (click)="logout()">Se deconnecter</span>
-            </div>
-          </div>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <h1 class="affiche">Abonnements</h1>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <div class="items" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px"
-      fxFlex>
-      <mat-card class="item mt2" *ngFor="let theme of themes$" fxFlex="calc(50%-25px)">
-        <mat-card-header>
-          <mat-card-title>
-            {{ theme.titre}}
-          </mat-card-title>
-          <mat-card-subtitle>
-            {{ theme.description}}
-            <div class="button">
-              <button *ngIf="theme?.follow" mat-raised-button color="warn" (click)="unFollow(theme.themeId)">
-                <span>Se desabonner</span>
-              </button>
-            </div>
-          </mat-card-subtitle>
-        </mat-card-header>
+          </form>
+        </mat-card-content>
       </mat-card>
     </div>
+  </div>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h1>Abonnements</h1>
+</div>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div class="items" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px"
+    fxFlex>
+    <mat-card class="item mt2" *ngFor="let theme of themes$" fxFlex="calc(50%-25px)">
+      <mat-card-header>
+        <mat-card-title>
+          {{ theme.titre}}
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ theme.description}}
+          <div class="button">
+            <button *ngIf="theme?.follow" mat-raised-button color="warn" (click)="unFollow(theme.themeId)">
+              <span>Se desabonner</span>
+            </button>
+          </div>
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
   </div>
 </div>

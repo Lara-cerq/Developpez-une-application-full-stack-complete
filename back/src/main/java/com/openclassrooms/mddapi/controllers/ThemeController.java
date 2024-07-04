@@ -29,6 +29,10 @@ public class ThemeController {
     @Autowired
     UserService userService;
 
+    /*
+    requette permettant d'envoyer au front tous les thèmes présents dans la DB
+    ainsi que d'ajouter si follow true ou false en fonction si l'user est abonné ou non
+     */
     @GetMapping()
     public ResponseEntity<?> findAll() {
         List<Theme> themeList = this.themeService.findAll();
@@ -47,6 +51,7 @@ public class ThemeController {
             themeDto.setDescription(theme.getDescription());
             themeDto.setTitre(theme.getTitre());
 
+            // pour la fonctionnalité s'abonner ou se désabonner => ajout de champ permettant de savoir facilement si user est abonné ou non
             if(listIds.contains(theme.getThemeId())) {
                 themeDto.setFollow(true);
             } else {
@@ -57,38 +62,5 @@ public class ThemeController {
         }
 
         return ResponseEntity.ok().body(themeListDto);
-    }
-
-    @GetMapping("/{themeId}")
-    public ResponseEntity<?> findById(@PathVariable("themeId") String id) {
-        try {
-            Theme theme = this.themeService.findById(Long.valueOf(id));
-            if (theme == null) {
-                return ResponseEntity.notFound().build();
-            }
-
-            return ResponseEntity.ok().body(theme);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    @PutMapping("{id}")
-    public ResponseEntity<?> update(@PathVariable("id") String id, @Valid @RequestBody ThemeDto themeDto) {
-
-        Theme theme = new Theme();
-
-        try {
-            theme = this.themeService.update(Long.parseLong(id),theme);
-
-            theme.setDescription(themeDto.getDescription());
-            theme.setTitre(themeDto.getTitre());
-            theme.setFollow(themeDto.getFollow());
-
-
-            return ResponseEntity.ok().body(theme);
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 }

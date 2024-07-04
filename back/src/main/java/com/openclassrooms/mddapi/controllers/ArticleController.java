@@ -35,6 +35,10 @@ public class ArticleController {
     @Autowired
     UserService userService;
 
+    /*
+    requette permettant d'afficher la liste des articles correspondant aux themes
+    que l'utilisateur est abonné du plus récent au plus ancien
+     */
     @GetMapping()
     public ResponseEntity<?> findAll() {
 
@@ -64,6 +68,10 @@ public class ArticleController {
         return ResponseEntity.ok().body(articleDtoList);
     }
 
+    /*
+  requette permettant d'afficher la liste des articles correspondant aux themes
+  que l'utilisateur est abonné du plus ancien au plus récent
+   */
     @GetMapping("/asc")
     public ResponseEntity<?> findAllAsc() {
 
@@ -93,6 +101,9 @@ public class ArticleController {
         return ResponseEntity.ok().body(articleDtoList);
     }
 
+    /*
+  requette permettant d'afficher l'article correspondant à l'id selectionné
+   */
     @GetMapping("/{article_id}")
     public ResponseEntity<?> findById(@PathVariable("article_id") String id) {
         try {
@@ -107,6 +118,9 @@ public class ArticleController {
         }
     }
 
+    /*
+  requette permettant de créer un nouvel article
+   */
     @PostMapping()
     public ResponseEntity<?> create(@Valid @RequestBody ArticleDto articleDto) {
 
@@ -119,9 +133,7 @@ public class ArticleController {
             theme = themeService.findById(Long.parseLong(articleDto.getTheme_id()));
         }
 
-
         article.setTheme(theme);
-        //article.setCreatedAt(articleDto.getDate());
 
         User user = new User();
         if (articleDto.getUser_id() != null) {

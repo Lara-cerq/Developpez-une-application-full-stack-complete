@@ -8,6 +8,7 @@ import com.openclassrooms.mddapi.response.JwtResponse;
 import com.openclassrooms.mddapi.response.MessageResponse;
 import com.openclassrooms.mddapi.security.jwt.JwtUtils;
 import com.openclassrooms.mddapi.security.services.UserDetailsImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,9 +23,13 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    @Autowired
     private final AuthenticationManager authenticationManager;
+    @Autowired
     private final JwtUtils jwtUtils;
+    @Autowired
     private final PasswordEncoder passwordEncoder;
+    @Autowired
     private final UserRepository userRepository;
 
     AuthController(AuthenticationManager authenticationManager,
@@ -37,6 +42,9 @@ public class AuthController {
         this.userRepository = userRepository;
     }
 
+    /*
+    requette permettant à l'utilisateur de se logger avec email/nom utilisateur en envoyant un token + userDetails
+   */
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -53,6 +61,9 @@ public class AuthController {
                 userDetails.getFirstName()));
     }
 
+    /*
+    requette permettant de s'enregistrer
+   */
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registRequest) {
         if (userRepository.existsByEmail(registRequest.getEmail())) {

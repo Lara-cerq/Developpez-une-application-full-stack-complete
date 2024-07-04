@@ -31,10 +31,11 @@ export class LoginComponent {
 
   public submit(): void {
     const loginRequest = this.form.value as LoginRequest;
+    //appel au service pour se connecter
     this.authService.login(loginRequest).subscribe({
       next: (response: SessionInformation) => {
         this.sessionService.logIn(response);
-        console.log(this.sessionService.sessionInformation?.token);
+        // redirection à la page de la liste des articles
         this.router.navigate(['article/list']);
       },
       error: error => {this.onError = true,

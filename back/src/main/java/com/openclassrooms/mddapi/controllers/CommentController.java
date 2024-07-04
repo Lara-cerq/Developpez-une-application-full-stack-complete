@@ -32,22 +32,28 @@ public class CommentController {
 
     @Autowired
     UserService userService;
-
+    /*
+    requette permettant d'ajout d'un commentaire
+    */
     @PostMapping()
     public ResponseEntity<?> create(@Valid @RequestBody CommentDto comment) {
 
         Article article = new Article();
         if(comment.getArticleId() != null) {
+            // appel au service pour récupérer l'article par l'id
             article = articleService.findById(Long.parseLong(comment.getArticleId()));
         }
 
         User user = new User();
         if(comment.getUserId() != null) {
+            // appel au service pour récupérer l'user par l'id
             user = userService.findById(Long.parseLong(comment.getUserId()));
         }
         Comment newComment = new Comment();
         newComment.setCommentaire(comment.getCommentaire());
+        //pour pouvoir afficher comment dans le bon article
         newComment.setArticle(article);
+        // pour pouvoir afficher le nom de la personne qui l'a écrit
         newComment.setUser(user);
         newComment.setAuteur(user.getFirstName());
 

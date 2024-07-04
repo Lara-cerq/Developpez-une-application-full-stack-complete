@@ -49,10 +49,14 @@ export class DetailComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    // appel au service pour récupérer l'article pour afficher détails
+    // récupération des commentaires appartennant à l'user a écrit
     this.articleService.getById(this.articleId).subscribe((article: Article) => {
       this.article = article;
       this.comments = article.commentaires;
     });
+
+    //récupération de l'user par les informations de connection
     this.userService.getById(this.sessionService.sessionInformation!.id.toString()).subscribe((user : User) => {
       this.user = user;
     })
@@ -76,7 +80,7 @@ export class DetailComponent implements OnInit {
       articleId: this.articleId,
       userId: this.sessionService.sessionInformation?.id.toString()
     } as Comment;
-    // const comment = this.commentForm?.value as Comment;
+    // appel au service pour ajout de commentaire
       this.commentService
         .create(commentaire)
         .subscribe((comment: Comment) => {this.exitPage('Commentaire ajouté !'), console.log(comment.userId)});

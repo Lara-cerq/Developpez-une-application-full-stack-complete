@@ -65,6 +65,7 @@ export class ArticleComponent implements OnInit {
   }
   public submit(): void {
     const article = this.articleForm?.value as Article;
+    // appel au service pour ajout de commentaire
       this.articleService
         .create(article)
         .subscribe((article: Article) => this.exitPage('Article crée !'));
@@ -72,6 +73,7 @@ export class ArticleComponent implements OnInit {
 
   private exitPage(message: string): void {
     this.matSnackBar.open(message, 'Close', { duration: 3000 });
+    // redirection à la page de la liste des articles
     this.router.navigate(['article/list']);
   }
 }

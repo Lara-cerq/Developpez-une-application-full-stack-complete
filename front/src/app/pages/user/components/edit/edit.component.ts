@@ -34,16 +34,19 @@ export class EditComponent implements OnInit {
     private themeService : ThemeService,
     private router: Router
   ) { 
+    // userId de user connecté
     this.userId = this.sessionService.sessionInformation!.id.toString();
   }
 
   ngOnInit(): void {
-
+    //récuération de l'id connecté
     this.id = this.route.snapshot.paramMap.get('id')!;
+    // récupération user connecté et envoi de formulaire
     this.userService
       .getById(this.sessionService.sessionInformation!.id.toString())
       .subscribe((user: User) => this.initForm(user));
 
+    // récupération themes auxquels l'user est abonné
     this.userService
       .getById(this.sessionService.sessionInformation!.id.toString())
       .subscribe((user: User) => {

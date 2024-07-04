@@ -14,15 +14,8 @@ export class ThemeService {
   constructor(private httpClient: HttpClient, ) { 
   }
 
+  // récupération de la liste des thèmes
   public all(): Observable<Theme[]> {
     return this.httpClient.get<Theme[]>(this.pathService);
-  }
-
-  public getById(themeId: string): Observable<Theme> {
-    return this.httpClient.get<Theme>(`${this.pathService}/${themeId}`);
-  }
-
-  public update(id: string, theme: Theme): Observable<Theme> {
-    return this.httpClient.put<Theme>(`${this.pathService}/${id}`, theme);
   }
 }
